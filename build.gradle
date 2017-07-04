@@ -129,12 +129,12 @@ if (project.hasProperty('ossrhUsername')) {
     }
 
     task copyJMHReportToDoc(type: Sync, group: 'documentation') {
-        from jmh
+        from "$buildDir/reports/jmh/results.txt"
         into("docs/jmh")
 
         doLast {
             scmFactory.create().commit('added JMH report', "docs/jmh")
-            grgit.push()
+            //grgit.push()
         }
     }
 
