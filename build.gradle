@@ -21,7 +21,6 @@ plugins {
     id 'build-dashboard'
 
     id 'nebula.gradle-git-scm' version '3.0.1'
-    //id 'org.ajoberstar.grgit' version '1.7.2'
 }
 
 repositories {
@@ -55,116 +54,6 @@ jmh {
     // Strategy to apply when encountring duplicate classes during creation of the fat jar (i.e. while executing jmhJar task)
 }
 
-if (project.hasProperty('ossrhUsername')) {
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                    authentication(userName: ossrhUsername, password: ossrhPassword)
-                }
-
-                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                    authentication(userName: ossrhUsername, password: ossrhPassword)
-                }
-
-                pom.project {
-                    name 'protobufel-benchmarks'
-                    packaging 'jar'
-                    description 'Protobufel JMH benchmarks'
-                    url 'https://github.com/protobufel/protobufel-benchmarks'
-
-                    scm {
-                        connection 'scm:git:https://github.com/protobufel/protobufel-benchmarks.git'
-                        developerConnection 'scm:git@github.com:protobufel/protobufel-benchmarks.git'
-                        url 'https://github.com/protobufel/protobufel-benchmarks'
-                    }
-
-                    licenses {
-                        license {
-                            name 'The BSD 3-Clause License'
-                            url 'http://opensource.org/licenses/BSD-3-Clause'
-                        }
-                    }
-
-                    developers {
-                        developer {
-                            id 'protobufel'
-                            name 'David Tesler'
-                            email 'protobufel@gmail.com'
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    nexusStaging {
-        //packageGroup = "com.github.protobufel.multikeymapjava" //optional if packageGroup == project.getGroup()
-        stagingProfileId = "com.github.protobufel" //when not defined will be got from server using "packageGroup"
-    }
-
-    task sourcesJar(type: Jar) {
-        classifier = 'sources'
-        from sourceSets.main.allSource
-    }
-
-    signing {
-        sign configurations.archives
-    }
-
-    task javadocJar(type: Jar) {
-        classifier = 'javadoc'
-        from javadoc
-    }
-
-    task copyJavadocToDoc(type: Sync, group: 'documentation') {
-        from javadoc
-        into("docs/javadoc")
-    }
-
-    artifacts {
-        archives javadocJar, sourcesJar
-    }
-
-    task copyJMHReportToDoc(type: Sync, group: 'documentation') {
-        from "$buildDir/reports/jmh/results.txt"
-        into("docs/jmh")
-
-        doLast {
-            scmFactory.create().commit('added JMH report', "docs/jmh")
-            //grgit.push()
-        }
-    }
-
-    release {
-        preCommitText = ''
-        preTagCommitMessage = 'pre tag commit: '
-        tagCommitMessage = 'bumped to '
-        newVersionCommitMessage = 'new version commit: '
-//        tagTemplate = "${version}"
-    }
-
-    preTagCommit.dependsOn 'copyJMHReportToDoc'
-    afterReleaseBuild.dependsOn 'jmh'
-    //afterReleaseBuild.dependsOn buildDashboard //, copyJMHReportToDoc
-} else {
-    test {
-        testLogging {
-            events "PASSED", "FAILED", "SKIPPED"
-            exceptionFormat "short"
-
-            debug {
-                events "skipped", "failed"
-                exceptionFormat "full"
-            }
-
-            info.events = ["failed", "skipped"]
-        }
-    }
-}
-
 jar {
     manifest {
         attributes('Implementation-Title': project.name,
@@ -172,33 +61,23 @@ jar {
     }
 }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.5
-            }
-        }
+task copyJMHReportToDoc(type: Sync, group: 'documentation') {
+    from "$buildDir/reports/jmh/results.txt"
+    into("docs/jmh")
 
-        rule {
-            enabled = false
-            element = 'CLASS'
-            includes = ['com.github.protobufel.*']
-
-            limit {
-                counter = 'LINE'
-                value = 'TOTALCOUNT'
-                maximum = 0.3
-            }
-        }
+    doLast {
+        scmFactory.create().commit('added JMH report', "docs/jmh")
+        //grgit.push()
     }
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled false
-    }
+release {
+    preCommitText = ''
+    preTagCommitMessage = 'pre tag commit: '
+    tagCommitMessage = 'bumped to '
+    newVersionCommitMessage = 'new version commit: '
+//        tagTemplate = "${version}"
 }
 
-check.dependsOn jacocoTestReport
+preTagCommit.dependsOn 'copyJMHReportToDoc'
+afterReleaseBuild.dependsOn 'jmh'
