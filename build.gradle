@@ -21,7 +21,7 @@ plugins {
     id 'build-dashboard'
 
     id 'nebula.gradle-git-scm' version '3.0.1'
-    id 'org.ajoberstar.grgit' version '1.7.2'
+    //id 'org.ajoberstar.grgit' version '1.7.2'
 }
 
 repositories {
