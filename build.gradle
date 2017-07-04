@@ -146,7 +146,7 @@ if (project.hasProperty('ossrhUsername')) {
 //        tagTemplate = "${version}"
     }
 
-    //preTagCommit.dependsOn copyJMHReportToDoc
+    preTagCommit.dependsOn 'copyJMHReportToDoc'
     afterReleaseBuild.dependsOn 'jmh'
     //afterReleaseBuild.dependsOn buildDashboard //, copyJMHReportToDoc
 } else {
