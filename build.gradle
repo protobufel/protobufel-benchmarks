@@ -15,7 +15,7 @@ plugins {
     id 'net.researchgate.release' version '2.6.0'
 
     //id 'eclipse'
-    id "me.champeau.gradle.jmh" version "0.4.2"
+    id "me.champeau.gradle.jmh" version "0.4.3"
 
     id 'jacoco'
 }
@@ -34,7 +34,7 @@ archivesBaseName = 'protobufel-benchmarks'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-def testGrammarProtobuf = "$buildDir/resources/test/com/github/protobufel"
+def testGrammarProtobuf = "$buildDir/resources/jmh/com/github/protobufel"
 
 configurations {
     shared
@@ -49,32 +49,11 @@ sourceSets {
 }
 
 dependencies {
-    //api '...'
-    api 'org.eclipse.jdt:org.eclipse.jdt.annotation:2.1.0'
-    //api 'javax.el:javax.el-api:3.0.1-b04'
-
     shared 'com.github.protobufel:protobufel-test-protos:0.7.1@jar'
 
-    implementation 'org.openjdk.jmh:jmh-core:1.19'
-
-    implementation 'org.glassfish:javax.el:3.0.1-b08'
-    implementation 'com.github.protobufel:protobufel:0.7.2'
-    //implementation 'com.github.protobufel:protobufel-el:0.7.1'
-    //implementation group: 'org.slf4j', name: 'slf4j-api', version:'1.7.25'
-    //implementation group: 'com.google.protobuf', name: 'protobuf-java', version: '2.6.1' //FIXME: remove as transitive?
-    implementation 'com.github.protobufel:protobufel-test-util:0.7.0'
-
-    testImplementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
-    testImplementation group: 'com.google.guava', name: 'guava', version: '22.0'
-    testImplementation 'com.google.guava:guava-testlib:22.0'
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    testImplementation 'org.hamcrest:hamcrest-junit:2.0.0.0'
-
-    testImplementation 'org.mockito:mockito-core:2.8.47'
-    testImplementation 'org.powermock:powermock-module-junit4:1.7.0'
-    testImplementation 'org.powermock:powermock-api-mockito2:1.7.0'
-
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.8.0'
+    jmh 'com.github.protobufel:protobufel:0.7.2'
+    jmh 'com.github.protobufel:protobufel-test-util:0.7.0'
+    //jmh group: 'com.google.protobuf', name: 'protobuf-java', version: '2.6.1' //FIXME: remove as transitive?
 }
 
 task copyGrammarProtobuf(type: Sync, group: 'runtime-resource') {
