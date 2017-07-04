@@ -147,7 +147,7 @@ if (project.hasProperty('ossrhUsername')) {
     }
 
     //preTagCommit.dependsOn copyJMHReportToDoc
-    afterReleaseBuild.dependsOn jmh
+    afterReleaseBuild.dependsOn 'jmh'
     //afterReleaseBuild.dependsOn buildDashboard //, copyJMHReportToDoc
 } else {
     test {
