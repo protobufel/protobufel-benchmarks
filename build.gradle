@@ -11,13 +11,16 @@ plugins {
     id 'maven'
     id 'signing'
 
-    id 'io.codearte.nexus-staging' version "0.9.0"
+    id 'io.codearte.nexus-staging' version '0.9.0'
     id 'net.researchgate.release' version '2.6.0'
 
     //id 'eclipse'
     id "me.champeau.gradle.jmh" version "0.4.3"
 
     id 'jacoco'
+    id 'build-dashboard'
+
+    id 'nebula.gradle-git-scm' version '3.0.1'
 }
 
 repositories {
@@ -34,39 +37,22 @@ archivesBaseName = 'protobufel-benchmarks'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-def testGrammarProtobuf = "$buildDir/resources/jmh/com/github/protobufel"
-
-configurations {
-    shared
-}
-
-sourceSets {
-    test {
-        resources {
-            output.dir(testGrammarProtobuf)
-        }
-    }
-}
-
 dependencies {
-    shared 'com.github.protobufel:protobufel-test-protos:0.7.1@jar'
-
     jmh 'com.github.protobufel:protobufel:0.7.2'
     jmh 'com.github.protobufel:protobufel-test-util:0.7.0'
-    //jmh group: 'com.google.protobuf', name: 'protobuf-java', version: '2.6.1' //FIXME: remove as transitive?
 }
 
-task copyGrammarProtobuf(type: Sync, group: 'runtime-resource') {
-    println "hi:" + configurations.shared.files.find({ file -> file.name.contains('protobufel-test-protos') }).name
+//reporting {
+//    baseDir "$buildDir/docs"
+//}
 
-    from zipTree(configurations.shared.files.find { file -> file.name.matches('.*protobufel-test-protos.*\\.jar') })
-    include '**/*'
-    exclude '**/META-INF/**/*'
-    exclude '/META-INF'
-    into testGrammarProtobuf
+jmh {
+    jmhVersion = '1.19' // Specifies JMH version
+    includeTests = false
+    // Allows to include test sources into generate JMH jar, i.e. use it when benchmarks depend on the test classes.
+    duplicateClassesStrategy = 'FAIL'
+    // Strategy to apply when encountring duplicate classes during creation of the fat jar (i.e. while executing jmhJar task)
 }
-
-processTestResources.dependsOn copyGrammarProtobuf
 
 if (project.hasProperty('ossrhUsername')) {
     uploadArchives {
@@ -141,7 +127,14 @@ if (project.hasProperty('ossrhUsername')) {
         archives javadocJar, sourcesJar
     }
 
-    preTagCommit.dependsOn copyJavadocToDoc
+    task copyJMHReportToDoc(type: Sync, group: 'documentation') {
+        from jmh
+        into("docs/jmh")
+
+        doLast {
+            scmFactory.create().commit('added JMH report', "docs/jmh")
+        }
+    }
 
     release {
         preCommitText = ''
@@ -151,7 +144,9 @@ if (project.hasProperty('ossrhUsername')) {
 //        tagTemplate = "${version}"
     }
 
-    afterReleaseBuild.dependsOn uploadArchives
+    preTagCommit.dependsOn copyJMHReportToDoc
+    afterReleaseBuild.dependsOn jmh
+    //afterReleaseBuild.dependsOn buildDashboard //, copyJMHReportToDoc
 } else {
     test {
         testLogging {
@@ -173,14 +168,6 @@ jar {
         attributes('Implementation-Title': project.name,
                 'Implementation-Version': project.version)
     }
-}
-
-jmh {
-    jmhVersion = '1.19' // Specifies JMH version
-    includeTests = false
-    // Allows to include test sources into generate JMH jar, i.e. use it when benchmarks depend on the test classes.
-    duplicateClassesStrategy = 'FAIL'
-    // Strategy to apply when encountring duplicate classes during creation of the fat jar (i.e. while executing jmhJar task)
 }
 
 jacocoTestCoverageVerification {
