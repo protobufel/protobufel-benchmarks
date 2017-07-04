@@ -71,6 +71,8 @@ task copyJMHReportToDoc(type: Sync, group: 'documentation') {
     }
 }
 
+copyJMHReportToDoc.dependsOn 'jmh'
+
 release {
     preCommitText = ''
     preTagCommitMessage = 'pre tag commit: '
@@ -79,5 +81,5 @@ release {
 //        tagTemplate = "${version}"
 }
 
-preTagCommit.dependsOn 'copyJMHReportToDoc'
-afterReleaseBuild.dependsOn 'jmh'
+//preTagCommit.dependsOn 'copyJMHReportToDoc'
+afterReleaseBuild.dependsOn 'copyJMHReportToDoc'
