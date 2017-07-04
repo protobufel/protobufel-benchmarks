@@ -1,0 +1,85 @@
+Benchmark                                                                                 Mode   Cnt      Score     Error   Units
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM                                          thrpt   100      0.011 ±   0.003  ops/us
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM                                          thrpt   100      0.013 ±   0.003  ops/us
+BuilderBenchmark.timeCreateAndBuildOriginalDM                                            thrpt   100      0.013 ±   0.002  ops/us
+BuilderBenchmark.timeCreateAndBuildOriginalGM                                            thrpt   100      0.359 ±   0.095  ops/us
+BuilderBenchmark.timeMergeAndBuild                                                       thrpt   100      0.014 ±   0.004  ops/us
+BuilderBenchmark.timeMergeAndBuildOriginalDM                                             thrpt   100      0.037 ±   0.009  ops/us
+BuilderBenchmark.timeMergeAndBuildOriginalGM                                             thrpt   100      0.483 ±   0.102  ops/us
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM                                           avgt   100    156.493 ± 164.725   us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM                                           avgt   100    330.427 ± 365.621   us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM                                             avgt   100    118.827 ±  71.574   us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM                                             avgt   100     55.525 ± 103.998   us/op
+BuilderBenchmark.timeMergeAndBuild                                                        avgt   100    224.628 ± 236.857   us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM                                              avgt   100    175.545 ± 308.183   us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM                                              avgt   100      8.018 ±   5.435   us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM                                         sample  2311     79.293 ±  27.158   us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p0.00    sample           26.272             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p0.50    sample           34.048             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p0.90    sample           81.843             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p0.95    sample          169.523             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p0.99    sample          527.892             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p0.999   sample         8753.512             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p0.9999  sample         9601.024             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM:timeCreateAndBuildAsOriginalDM·p1.00    sample         9601.024             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM                                         sample  1757    112.158 ±  57.669   us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p0.00    sample           35.712             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p0.50    sample           41.408             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p0.90    sample           98.125             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p0.95    sample          183.808             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p0.99    sample          745.144             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p0.999   sample        15899.361             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p0.9999  sample        16023.552             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM:timeCreateAndBuildAsOriginalGM·p1.00    sample        16023.552             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM                                           sample  1786    108.912 ±  41.330   us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p0.00        sample           47.808             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p0.50        sample           56.384             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p0.90        sample          107.674             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p0.95        sample          201.088             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p0.99        sample          701.430             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p0.999       sample        10678.354             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p0.9999      sample        12419.072             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM:timeCreateAndBuildOriginalDM·p1.00        sample        12419.072             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM                                           sample  5899      7.382 ±   2.103   us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p0.00        sample            1.128             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p0.50        sample            2.028             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p0.90        sample           10.832             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p0.95        sample           24.128             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p0.99        sample           78.464             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p0.999       sample          612.250             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p0.9999      sample         2605.056             us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM:timeCreateAndBuildOriginalGM·p1.00        sample         2605.056             us/op
+BuilderBenchmark.timeMergeAndBuild                                                      sample  1874     96.495 ±  32.425   us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p0.00                              sample           24.864             us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p0.50                              sample           38.336             us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p0.90                              sample          161.280             us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p0.95                              sample          240.192             us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p0.99                              sample          666.112             us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p0.999                             sample         7749.632             us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p0.9999                            sample        13025.280             us/op
+BuilderBenchmark.timeMergeAndBuild:timeMergeAndBuild·p1.00                              sample        13025.280             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM                                            sample  2717     50.507 ±  20.145   us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p0.00          sample           11.088             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p0.50          sample           18.240             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p0.90          sample           72.474             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p0.95          sample          119.091             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p0.99          sample          346.399             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p0.999         sample         6068.568             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p0.9999        sample        11583.488             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM:timeMergeAndBuildOriginalDM·p1.00          sample        11583.488             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM                                            sample  6016      7.907 ±   3.841   us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p0.00          sample            1.204             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p0.50          sample            2.072             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p0.90          sample           13.461             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p0.95          sample           26.624             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p0.99          sample           47.808             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p0.999         sample          322.898             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p0.9999        sample         5079.040             us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM:timeMergeAndBuildOriginalGM·p1.00          sample         5079.040             us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalDM                                             ss   100    200.352 ±  46.820   us/op
+BuilderBenchmark.timeCreateAndBuildAsOriginalGM                                             ss   100    328.494 ±  88.086   us/op
+BuilderBenchmark.timeCreateAndBuildOriginalDM                                               ss   100    180.186 ± 138.159   us/op
+BuilderBenchmark.timeCreateAndBuildOriginalGM                                               ss   100     96.316 ±  52.565   us/op
+BuilderBenchmark.timeMergeAndBuild                                                          ss   100    590.781 ± 302.960   us/op
+BuilderBenchmark.timeMergeAndBuildOriginalDM                                                ss   100    369.761 ± 167.639   us/op
+BuilderBenchmark.timeMergeAndBuildOriginalGM                                                ss   100     60.251 ±  19.795   us/op
